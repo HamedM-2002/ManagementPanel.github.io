@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html
+  lang="fa"
+  class="light-style customizer-hide"
+  dir="rtl"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+
+    <title>SignUp</title>
+
+    <meta name="description" content="SignUp" />
+        <!-- theme toggling -->
+        <script>
+          // Apply the saved theme before the rest of the page loads
+          (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+              document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+          })();
+        </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const body = document.body;
+          const toggle = document.getElementById('themeToggle');
+
+          // Check if there's a saved theme
+          const savedTheme = localStorage.getItem('theme');
+          if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            toggle.checked = savedTheme === 'dark';
+          }
+
+          // Toggle theme on checkbox change
+          toggle.addEventListener('change', () => {
+            const theme = toggle.checked ? 'dark' : 'light';
+            body.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute('data-theme', theme); // Apply theme to document element
+            localStorage.setItem('theme', theme);
+          });
+        });
+      </script>
+      <!-- Theme Color Toggling -->
+      <script>
+        // Apply the saved theme colors before the rest of the page loads
+        (function () {
+          const savedThemeColors = localStorage.getItem('themeColors');
+          if (savedThemeColors) {
+            const colors = JSON.parse(savedThemeColors);
+            document.documentElement.style.setProperty('--bs-primary', colors.primary);
+            document.documentElement.style.setProperty('--bs-primary-p1', colors.primaryP1);
+            document.documentElement.style.setProperty('--bs-primary-p2', colors.primaryP2);
+          }
+        })();
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const buttons = document.querySelectorAll('#theme-color-selection .btn');
+
+          // Function to set theme colors
+          function setThemeColors(colors) {
+            document.documentElement.style.setProperty('--bs-primary', colors.primary);
+            document.documentElement.style.setProperty('--bs-primary-p1', colors.primaryP1);
+            document.documentElement.style.setProperty('--bs-primary-p2', colors.primaryP2);
+            localStorage.setItem('themeColors', JSON.stringify(colors));
+          }
+
+          // Function to update selected button
+          function updateSelectedButton(selectedButton) {
+            buttons.forEach(button => button.classList.remove('selected'));
+            selectedButton.classList.add('selected');
+          }
+
+          // Load saved theme colors and update the selected button
+          const savedThemeColors = localStorage.getItem('themeColors');
+          if (savedThemeColors) {
+            const colors = JSON.parse(savedThemeColors);
+            buttons.forEach(button => {
+              const buttonColors = JSON.parse(button.getAttribute('data-colors'));
+              if (buttonColors.primary === colors.primary) {
+                updateSelectedButton(button);
+              }
+            });
+            // Apply the saved theme colors
+            setThemeColors(colors);
+          } else {
+            // If no saved theme, select the first button by default
+            updateSelectedButton(buttons[0]);
+          }
+
+          // Add click event listener to buttons
+          buttons.forEach(button => {
+            button.addEventListener('click', () => {
+              const colors = JSON.parse(button.getAttribute('data-colors'));
+              setThemeColors(colors);
+              updateSelectedButton(button);
+            });
+          });
+        });
+      </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/image/favicon-32x32.png" />
+    <link href="../assets/image/android-chrome-192x192.png" rel="apple-touch-icon">
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core-rtl.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default-rtl.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo-rtl.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth-rtl.css" />
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+  <body data-theme="light">
+    <!-- Content -->
+
+    <div class="container-xxl">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+          <!-- Register Card -->
+          <div class="card">
+            <div class="card-body">
+              <!-- Logo -->
+              <div class="app-brand justify-content-center">
+                <a href="index.html" class="app-brand-link gap-2">
+                  <span class="app-brand-logo demo">
+                    <img src="../assets/image/logo.svg" alt="Timcheh-Logo">
+                  </span>
+                </a>
+              </div>
+              <!-- /Logo -->
+                <h4 class="mb-2"> 🚀 سفر شما از اینجا شروع میشه...</h4>
+                <p class="mb-4 text-muted dana-medium">فقط کافیه یک حساب کاربری بسازید</p>  
+              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                <div class="mb-3">
+                  <label for="username" class="form-label dana-medium">نام کاربری</label>
+                  <input
+                    type="text"
+                    style="direction: ltr;"
+                    class="form-control horizon-rounded"
+                    id="username"
+                    name="username"
+                    placeholder="یک نام کاربری انتخاب کنید"
+                    autofocus
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label dana-medium">ایمیل</label>
+                  <input type="email" class="form-control horizon-rounded" id="email" name="email" placeholder="ایمیل خود را وارد کنید" />
+                </div>
+                <div class="mb-3 form-password-toggle">
+                  <label class="form-label dana-medium" for="password">رمز عبور</label>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="password"
+                      style="direction: ltr;"
+                      id="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password"
+                    />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-check" style="direction: rtl;">
+                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" role="button" />
+                    <label class="form-check-label" for="terms-conditions">
+                      من با
+                      <a href="sales.html">ضوابط و قوانین</a>
+                      موافقم
+                    </label>
+                  </div>
+                </div>
+                <button class="btn btn-primary d-grid w-100 dana-medium" id="SignUpBtn">ثبت نام</button>
+              </form>
+
+              <bdo dir="rtl">
+                <p class="text-center">
+                  <span>حساب کاربری دارید؟</span>
+                  <a href="auth-login-basic.html">
+                    <span>وارد شوید.</span>
+                  </a>
+                </p>
+              </bdo>
+            </div>
+          </div>
+          <!-- Register Card -->
+        </div>
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

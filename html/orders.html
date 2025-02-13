@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="light-style layout-menu-fixed" data-theme="theme-default"
+    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Timcheh-Management-Page">
+    <meta name="author" content="Hamed Miraki">
+    <meta name="Keywords" content="Html,Css,Bootstrap,JS,management-template">
+    <title></title>
+    <!-- fav-icon and apple touch icon -->
+    <link href="../assets/image/favicon-32x32.png" rel="icon" type="image/x-icon">
+    <link href="../assets/image/android-chrome-192x192.png" rel="apple-touch-icon">
+    <!-- font icons -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css">
+    <link href="../assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <link href="../assets/uicons/uicons-regular-rounded/css/uicons-regular-rounded.css"
+        rel="stylesheet">
+    <!-- core css -->
+    <link href="../assets/vendor/css/core-rtl.css" type="text/css" rel="stylesheet"
+        class="template-customizer-core-css">
+    <link href="../assets/vendor/css/theme-default-rtl.css" type="text/css" rel="stylesheet"
+        class="template-customizer-theme-css">
+    <link href="../assets/css/demo-rtl.css" type="text/css" rel="stylesheet">
+    <!-- Vendors css -->
+    <link href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../assets/vendor/libs/apex-charts/apex-charts.css" rel="stylesheet">
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="../assets/js/config.js"></script>
+</head>
+
+<body>
+    <!-- Layout Wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="Timcheh-mgmt-pg.html" class="app-brand-link">
+                        <img src="../assets/image/logo.svg" alt="Timcheh-Logo" class="app-brand-logo demo">
+                        <span
+                            class="app-brand-text demo menu-text fs-6 fw-bolder text-success mark bg-primary p-1 rounded-pill ms-2">
+                            پنل مدیریت
+                        </span>
+                    </a>
+                    <a href="javascript:void(0);"
+                        class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-right bx-sm align-middle"></i>
+                    </a>
+                </div>
+                <div class="menu-inner-shadow"></div>
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item">
+                        <a href="Timcheh-mgmt-pg.html" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-alt"></i>
+                            <div data-i18n="Analytics" class="dana-bold">داشبورد</div>
+                        </a>
+                    </li>
+                    <!-- Website Statistics -->
+                    <li class="menu-item active open">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-bar-chart"></i>
+                            <div data-i18n="Statistics" class="dana-semibold">آمار های وبسایت</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="sales.html" class="menu-link">
+                                    <div data-i18n="sales">فروش</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="view.html" class="menu-link">
+                                    <div data-i18n="view-count">بازدید</div>
+                                </a>
+                            </li>
+                            <li class="menu-item active">
+                                <a href="orders.html" class="menu-link">
+                                    <div data-i18n="new-orders">سفارشات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Layouts -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-layout mb-1"></i>
+                            <div data-i18n="Layouts" class="dana-medium">قالب های مدیریتی</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="without menu">بدون منو</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="without navbar">بدون منوی ناوبری</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Container">فاصله بندی شده</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Fluid">فاصله بندی نشده</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="blank">صفحه خالی</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">صفحات</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-user-circle mb-1"></i>
+                            <div data-i18n="Account Settings" class="dana-medium">تنظیمات حساب</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="pages-account-settings-account.html" class="menu-link">
+                                    <div data-i18n="account">حساب کاربری</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-account-settings-notifications.html" class="menu-link">
+                                    <div data-i18n="Notifications">اعلانات</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-account-settings-connections.html" class="menu-link">
+                                    <div data-i18n="Connections">ارتباطات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-lock-open-alt mb-1"></i>
+                            <div data-i18n="Authentications" class="dana-medium">احراز هویت</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">ورود</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">ثبت نام</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">فراموشی رمز عبور</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-user-x mb-1"></i>
+                            <div data-i18n="no-access" class="dana-medium">عدم دسترسی</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="pages-misc-error.html" class="menu-link" target="_blank">
+                                    <div data-i18n="404-error">خطای 404</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-misc-under-maintenance.html" class="menu-link" target="_blank">
+                                    <div data-i18n="503-error">خطای 503</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">اجزای سایت</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link dana-medium">
+                            <i class="menu-icon tf-icon bx bx-credit-card-front mb-1"></i>
+                            <div data-18n="cards">کارت</div>
+                        </a>
+                    </li>
+                    <!-- User interface -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-box mb-1"></i>
+                            <div data-i18n="User interface" class="dana-medium">رابط کاربری</div>
+                        </a>
+                        <ul class="menu-sub horizon-rounded">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Accordion">Accordion</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Alerts">Alerts</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Badges">Badges</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Buttons">Buttons</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Carousel">Carousel</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Collapse">Collapse</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Dropdowns">Dropdowns</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Footer">Footer</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="List Groups">List groups</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Modals">Modals</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Navbar">Navbar</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Offcanvas">Offcanvas</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Pagination & Breadcrumbs">Pagination & Breadcrumbs</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Progress">Progress</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Spinners">Spinners</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Tabs & Pills">Tabs & Pills</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Toasts">Toasts</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Tooltips & Popovers">Tooltips & popovers</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Typography">Typography</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Extended components -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-extension mb-1"></i>
+                            <div data-i18n="Extended UI" class="dana-medium">توسعه رابط کاربری</div>
+                        </a>
+                        <ul class="menu-sub horizon-rounded">
+                            <li class="menu-item">
+                                <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                                    <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="extended-ui-text-divider.html" class="menu-link">
+                                    <div data-i18n="Text Divider">Text Divider</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Forms & Tables -->
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">فرم ها و جداول</span>
+                    </li>
+                    <!-- Forms -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-detail mb-1"></i>
+                            <div data-i18n="Form Elements" class="dana-medium">عناصر فرم</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Basic Inputs">ورودی های پایه فرم</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Input groups">ورودی های گروهی فرم</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-detail mb-1"></i>
+                            <div data-i18n="Form Layouts" class="dana-medium">طرح های فرم</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Vertical Form">فرم های عمودی</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Horizontal Form">فرم های افقی</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Tables -->
+                    <li class="menu-item">
+                        <a href="tables-basic.html" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-table mb-1"></i>
+                            <div data-i18n="Tables" class="dana-medium">جداول</div>
+                        </a>
+                    </li>
+                    <!-- Misc -->
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">
+                            اسناد و پشتیبانی
+                        </span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" target="_blank" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-support mb-1"></i>
+                            <div data-i18n="Support" class="dana-medium">پشتیبانی</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);"
+                            target="_blank" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-file mb-1"></i>
+                            <div data-i18n="Documentation" class="dana-medium">اسناد</div>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+    <!-- Core JS -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboards-analytics.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

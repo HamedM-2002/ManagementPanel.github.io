@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="light-style layout-menu-fixed" data-theme="theme-default"
+    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Timcheh-Management-Page">
+    <meta name="author" content="Hamed Miraki">
+    <meta name="Keywords" content="Html,Css,Bootstrap,JS,management-template">
+    <title>Timcheh-Management-Page</title>
+    <!-- theme toggling -->
+    <script>
+        // Apply the saved theme before the rest of the page loads
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const toggle = document.getElementById('themeToggle');
+
+            // Check if there's a saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+                toggle.checked = savedTheme === 'dark';
+            }
+
+            // Toggle theme on checkbox change
+            toggle.addEventListener('change', () => {
+                const theme = toggle.checked ? 'dark' : 'light';
+                body.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme', theme); // Apply theme to document element
+                localStorage.setItem('theme', theme);
+            });
+        });
+    </script>
+    <!-- Theme Color Toggling -->
+    <script>
+        // Apply the saved theme colors before the rest of the page loads
+        (function () {
+            const savedThemeColors = localStorage.getItem('themeColors');
+            if (savedThemeColors) {
+                const colors = JSON.parse(savedThemeColors);
+                document.documentElement.style.setProperty('--bs-primary', colors.primary);
+                document.documentElement.style.setProperty('--bs-primary-p1', colors.primaryP1);
+                document.documentElement.style.setProperty('--bs-primary-p2', colors.primaryP2);
+            }
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('#theme-color-selection .btn');
+
+            // Function to set theme colors
+            function setThemeColors(colors) {
+                document.documentElement.style.setProperty('--bs-primary', colors.primary);
+                document.documentElement.style.setProperty('--bs-primary-p1', colors.primaryP1);
+                document.documentElement.style.setProperty('--bs-primary-p2', colors.primaryP2);
+                localStorage.setItem('themeColors', JSON.stringify(colors));
+            }
+
+            // Function to update selected button
+            function updateSelectedButton(selectedButton) {
+                buttons.forEach(button => button.classList.remove('selected'));
+                selectedButton.classList.add('selected');
+            }
+
+            // Load saved theme colors and update the selected button
+            const savedThemeColors = localStorage.getItem('themeColors');
+            if (savedThemeColors) {
+                const colors = JSON.parse(savedThemeColors);
+                buttons.forEach(button => {
+                    const buttonColors = JSON.parse(button.getAttribute('data-colors'));
+                    if (buttonColors.primary === colors.primary) {
+                        updateSelectedButton(button);
+                    }
+                });
+                // Apply the saved theme colors
+                setThemeColors(colors);
+            } else {
+                // If no saved theme, select the first button by default
+                updateSelectedButton(buttons[0]);
+            }
+
+            // Add click event listener to buttons
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const colors = JSON.parse(button.getAttribute('data-colors'));
+                    setThemeColors(colors);
+                    updateSelectedButton(button);
+                });
+            });
+        });
+    </script>
+    <!-- fav-icon and apple touch icon -->
+    <link href="../assets/image/favicon-32x32.png" rel="icon" type="image/x-icon">
+    <link href="../assets/image/android-chrome-192x192.png" rel="apple-touch-icon">
+    <!-- font icons -->
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css">
+    <link href="../assets/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <link href="../assets/uicons/uicons-regular-rounded/css/uicons-regular-rounded.css"
+        rel="stylesheet">
+    <!-- core css -->
+    <link href="../assets/vendor/css/core-rtl.css" type="text/css" rel="stylesheet"
+        class="template-customizer-core-css">
+    <link href="../assets/vendor/css/theme-default-rtl.css" type="text/css" rel="stylesheet"
+        class="template-customizer-theme-css">
+    <link href="../assets/css/demo-rtl.css" type="text/css" rel="stylesheet">
+    <!-- Vendors css -->
+    <link href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet">
+    <link href="../assets/vendor/libs/apex-charts/apex-charts.css" rel="stylesheet">
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="../assets/js/config.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+
+<body data-theme="light">
+    <!-- Layout Wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="Timcheh-mgmt-pg.html" class="app-brand-link">
+                        <img src="../assets/image/logo.svg" alt="Timcheh-Logo" class="app-brand-logo demo">
+                        <span
+                            class="app-brand-text demo menu-text fs-6 fw-bolder text-success mark bg-primary p-1 rounded-pill ms-2">
+                            پنل مدیریت
+                        </span>
+                    </a>
+                    <a href="javascript:void(0);"
+                        class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-right bx-sm align-middle"></i>
+                    </a>
+                </div>
+                <div class="menu-inner-shadow"></div>
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item active">
+                        <a href="Timcheh-mgmt-pg.html" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-home-alt mb-1"></i>
+                            <div data-i18n="Analytics" class="dana-semibold">داشبورد</div>
+                        </a>
+                    </li>
+                    <!-- Website Statistics -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-bar-chart mb-1"></i>
+                            <div data-i18n="Statistics" class="dana-medium">آمار های وبسایت</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="sales.html" class="menu-link">
+                                    <div data-i18n="sales">فروش</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="view.html" class="menu-link">
+                                    <div data-i18n="view-count">بازدید</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="orders.html" class="menu-link">
+                                    <div data-i18n="new-orders">
+                                        سفارشات جدید
+                                        <span
+                                            class="badge badge-center bg-label-success p-2 horizon-rounded ms-2">37</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Layouts -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-layout mb-1"></i>
+                            <div data-i18n="Layouts" class="dana-medium">قالب های مدیریتی</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="without menu">بدون منو</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="without navbar">بدون منوی ناوبری</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Container">فاصله بندی شده</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Fluid">فاصله بندی نشده</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="blank">صفحه خالی</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">صفحات</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-user-circle mb-1"></i>
+                            <div data-i18n="Account Settings" class="dana-medium">تنظیمات حساب</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="pages-account-settings-account.html" class="menu-link">
+                                    <div data-i18n="account">حساب کاربری</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-account-settings-notifications.html" class="menu-link">
+                                    <div data-i18n="Notifications">اعلانات</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-account-settings-connections.html" class="menu-link">
+                                    <div data-i18n="Connections">ارتباطات</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-lock-open-alt mb-1"></i>
+                            <div data-i18n="Authentications" class="dana-medium">احراز هویت</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">ورود</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">ثبت نام</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                                    <div data-i18n="basic">فراموشی رمز عبور</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-user-x mb-1"></i>
+                            <div data-i18n="no-access" class="dana-medium">عدم دسترسی</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="pages-misc-error.html" class="menu-link" target="_blank">
+                                    <div data-i18n="404-error">خطای 404</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="pages-misc-under-maintenance.html" class="menu-link" target="_blank">
+                                    <div data-i18n="503-error">خطای 503</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">اجزای سایت</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link dana-medium">
+                            <i class="menu-icon tf-icon bx bx-credit-card-front mb-1"></i>
+                            <div data-18n="cards">کارت</div>
+                        </a>
+                    </li>
+                    <!-- User interface -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-box mb-1"></i>
+                            <div data-i18n="User interface" class="dana-medium">رابط کاربری</div>
+                        </a>
+                        <ul class="menu-sub horizon-rounded">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Accordion">Accordion</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Alerts">Alerts</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Badges">Badges</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Buttons">Buttons</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Carousel">Carousel</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Collapse">Collapse</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Dropdowns">Dropdowns</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Footer">Footer</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="List Groups">List groups</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Modals">Modals</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Navbar">Navbar</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Offcanvas">Offcanvas</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Pagination & Breadcrumbs">Pagination & Breadcrumbs</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Progress">Progress</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Spinners">Spinners</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Tabs & Pills">Tabs & Pills</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Toasts">Toasts</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Tooltips & Popovers">Tooltips & popovers</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Typography">Typography</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Extended components -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-extension mb-1"></i>
+                            <div data-i18n="Extended UI" class="dana-medium">توسعه رابط کاربری</div>
+                        </a>
+                        <ul class="menu-sub horizon-rounded">
+                            <li class="menu-item">
+                                <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                                    <div data-i18n="Smooth Scrollbar">Smooth scrollbar</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="extended-ui-text-divider.html" class="menu-link">
+                                    <div data-i18n="Text Divider">Text Divider</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Forms & Tables -->
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">فرم ها و جداول</span>
+                    </li>
+                    <!-- Forms -->
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-detail mb-1"></i>
+                            <div data-i18n="Form Elements" class="dana-medium">عناصر فرم</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Basic Inputs">ورودی های پایه فرم</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Input groups">ورودی های گروهی فرم</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icon bx bx-detail mb-1"></i>
+                            <div data-i18n="Form Layouts" class="dana-medium">طرح های فرم</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Vertical Form">فرم های عمودی</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <div data-i18n="Horizontal Form">فرم های افقی</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Tables -->
+                    <li class="menu-item">
+                        <a href="tables-basic.html" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-table mb-1"></i>
+                            <div data-i18n="Tables" class="dana-medium">جداول</div>
+                        </a>
+                    </li>
+                    <!-- Misc -->
+                    <li class="menu-header small dana-semibold">
+                        <span class="menu-header-text">
+                            اسناد و پشتیبانی
+                        </span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" target="_blank" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-support mb-1"></i>
+                            <div data-i18n="Support" class="dana-medium">پشتیبانی</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);"
+                            target="_blank" class="menu-link">
+                            <i class="menu-icon tf-icon bx bx-file mb-1"></i>
+                            <div data-i18n="Documentation" class="dana-medium">اسناد</div>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+            <!-- / Menu -->
+
+            <!-- Layout Container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                    id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a href="javascript:void(0);" class="nav-item nav-link px-0 me-xl-4">
+                            <i class="bx bx-menu bs-sm"></i>
+                        </a>
+                    </div>
+                    <div class="navbar-nav-left d-flex align-items-center" id="navbar-collapse">
+                        <a href="Timcheh.com/index.html" class="navbar-brand d-none d-sm-block me-5 ms-3"
+                            data-bs-toggle="tooltip" data-bs-title="وبسایت فروشگاه" data-bs-placement="bottom">
+                            <img src="../assets/image/logo.svg" alt="Website" width="60px" height="30px">
+                        </a>
+                        <!-- Search -->
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <button type="submit" for="Main-search" aria-label="search button" id="Main-search-btn"
+                                    class="bx bx-search-alt fs-4 border-0 bg-transparent text-body"></button>
+                                <input type="search" class="form-control border-0 shadow-none" id="Main-search" placeholder=""
+                                    data-translate-placeholder="search" aria-label="search area">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / Search -->
+
+                    <ul class="navbar-nav flex-row align-items-center">
+                        <!-- <li class="nav-item">
+                                <bdo dir="ltr">
+                                    <a href="#"
+                                        class="github-button" data-icon="octicon-star" data-size="large"
+                                        data-show-count="true"
+                                        aria-label="Star on GitHub">
+                                        GitHub Stars
+                                    </a>
+                                </bdo>
+                            </li> --> <!-- GitHub Stars -->
+                        <li class="nav-item navbar-dropdown dropdown-user dropdown" aria-expanded="false" aria-controls="account-menu">
+                            <a href="pages-account-settings-account.html" class="nav-link dropdown-toggle hide-arrow"
+                                data-bs-toggle="dropdown">
+                                <div class="avatar avatar-online">
+                                    <img src="../assets/img/avatars/7.png" alt="Shayan-Behmanesh"
+                                        class="w-px-40 h-auto rounded-circle">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" id="account-menu">
+                                <li>
+                                    <a href="pages-account-settings-account.html" class="dropdown-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar avatar-online">
+                                                    <img src="../assets/img/avatars/7.png"
+                                                        alt="Shayan-Behmanesh" class="w-px-40 h-auto rounded-circle">
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <span class="d-block dana-semibold">شایان بهمنش</span>
+                                                <small class="text-muted">ادمین</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a href="sales.html" class="dropdown-item">
+                                        <div class="d-flex align-items-center align-middle">
+                                            <i class="flex-shrink-0 bx bx-credit-card-alt me-2"></i>
+                                            <span class="flex-grow-1 align-middle">صورتحساب</span>
+                                            <span
+                                                class="flex-shrink-0 badge badge-center rounded-pill horizon-rounded bg-danger w-px-20 h-px-20">7</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a href="pages-account-settings-account.html" class="dropdown-item">
+                                        <i class="bx bx-user me-2"></i>
+                                        <span class="align-middle">پروفایل من</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="pages-account-settings-notifications.html" class="dropdown-item">
+                                        <i class="bx bx-notification me-2"></i>
+                                        <span class="align-middle">اعلانات</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="pages-account-settings-connections.html" class="dropdown-item">
+                                        <i class="bx bx-conversation me-2"></i>
+                                        <span class="align-middle">ارتباطات</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <button type="button" class="dropdown-item" data-bs-toggle="offcanvas"
+                                        data-bs-target="#uiConfigOffcanvas" aria-controls="uiConfigOffcanvas">
+                                        <i class="bx bx-cog me-2"></i>
+                                        <span class="align-middle">تنظیمات</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item btn btn-outline-danger text-center"
+                                        data-bs-toggle="modal" data-bs-target="#exit-account">
+                                        <i class="bx bx-exit"></i>
+                                        <span class="align-middle">خروج</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- / Navbar -->
+
+                <!-- UI-Config-Offcanvas -->
+                <div class="offcanvas offcanvas-end bg-black bg-gradient" id="uiConfigOffcanvas" tabindex="-1"
+                    aria-labelledby="uiConfigOffcanvasTitle">
+                    <div class="offcanvas-header shadow-lg bg-primary bg-gradient pe-1">
+                        <h2 class="offcanvas-title fs-4 dana-bold text-lightest" id="uiConfigOffcanvasTitle"
+                            data-translate="uiConfigOffcanvasTitle">
+                        </h2>
+                        <button type="button" class="btn bi bi-x-square fs-2 text-lightest" data-bs-dismiss="offcanvas"
+                            aria-label="close"></button>
+                    </div>
+                    <div class="offcanvas-body pt-5">
+                        <div class="card w-100 bg-dark bg-gradient shadow">
+                            <div class="card-header border-bottom border-secondary pt-3 pb-1">
+                                <h2 class="card-title dana-bold fs-3 text-info" data-translate="app-theme"></h2>
+                            </div>
+                            <div class="card-body pt-3">
+                                <h3 class="display-6 fs-5 dana-medium text-lightest mb-0"
+                                    data-translate="day-night-switch"></h3>
+                                <div class="day-night-switch">
+                                    <label class="switch">
+                                        <input type="checkbox" id="themeToggle">
+                                        <div class="switch-panel round">
+                                            <div class="key round">
+                                                <span
+                                                    class="switch-active position-absolute top-0 bottom-0 start-0 end-0"><i
+                                                        class="bx bx-moon align-text-bottom"></i></span>
+                                                <span
+                                                    class="switch-deactive position-absolute top-0 bottom-0 start-0 end-0"><i
+                                                        class="bx bx-sun text-black align-text-bottom"></i></span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="menu-divider my-4"></div>
+                                <h3 class="display-6 fs-5 dana-medium text-lightest mb-4"
+                                    data-translate="theme-color-selection"></h3>
+                                <div class="d-flex align-items-center justify-content-center align-content-center flex-wrap gap-3"
+                                    id="theme-color-selection">
+                                    <button type="button" class="btn rounded-circle p-3 selected"
+                                        style="background-color: #0082FD;"
+                                        data-colors='{"primary": "#0082FD", "primaryP1": "#2070FF", "primaryP2": "20, 100, 255"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #28A745;"
+                                        data-colors='{"primary": "#28A745", "primaryP1": "#4CAF50", "primaryP2": "40, 167, 69"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #2E8B57;"
+                                        data-colors='{"primary": "#2E8B57", "primaryP1": "#3EBB77", "primaryP2": "46, 139, 87"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #228200"
+                                        data-colors='{"primary": "#228200", "primaryP1": "#229900", "primaryP2": "17, 153, 0"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #17A2B8;"
+                                        data-colors='{"primary": "#17A2B8", "primaryP1": "#20C2D1", "primaryP2": "23, 162, 184"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3" style="background-color: #EE0"
+                                        data-colors='{"primary": "#EE0", "primaryP1": "#FF0", "primaryP2": "256, 256, 0"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #FFC107;"
+                                        data-colors='{"primary": "#FFC107", "primaryP1": "#FFD547", "primaryP2": "255, 193, 7"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #FF6F61;"
+                                        data-colors='{"primary": "#FF6F61", "primaryP1": "#FF9083", "primaryP2": "255, 111, 97"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #FF5733;"
+                                        data-colors='{"primary": "#FF5733", "primaryP1": "#FF7961", "primaryP2": "255, 103, 77"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #993322"
+                                        data-colors='{"primary": "#993322", "primaryP1": "#992211", "primaryP2": "0, 1, 145"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #696cFF"
+                                        data-colors='{"primary": "#696cFF", "primaryP1": "#756CFF", "primaryP2": "133, 208, 255"}'>
+                                    </button>
+                                    <button type="button" class="btn rounded-circle p-3"
+                                        style="background-color: #6F42C1;"
+                                        data-colors='{"primary": "#6F42C1", "primaryP1": "#8C52D5", "primaryP2": "111, 66, 193"}'>
+                                    </button>
+                                </div>
+                                <div class="menu-divider my-4"></div>
+                                <h3 class="display-6 fs-5 dana-medium text-lightest mb-4" data-translate="lang-select">
+                                </h3>
+                                <div class="d-flex align-items-center justify-content-center align-content-center flex-wrap gap-3"
+                                    id="app-language-selection">
+                                    <div class="lang-en rounded p-3 text-lightest dana-bold selected" id="Fa-Btn"
+                                        role="button" data-translate="Persian-select"></div>
+                                    <div class="lang-en rounded p-3 text-lightest horizon-rounded" id="En-Btn"
+                                        role="button">English</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /UI-Config-Offcanvas -->
+
+                <!-- Content Wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <div class="row">
+                            <div class="col-lg-6 mb-4 order-0">
+                                <div class="card h-100">
+                                    <div class="d-flex align-items-end row">
+                                        <div class="col-sm-7">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-primary" tabindex="0"
+                                                    data-translate="badge-congrats-title"></h5>
+                                                <p class="mb-4" data-translate="badge-congrats-text" tabindex="0"></p>
+                                                <button type="button" class="btn btn-outline-primary btn-sm dana-medium"
+                                                    data-bs-toggle="offcanvas" data-bs-target="#badgesOffcanvas"
+                                                    aria-controls="badgesOffcanvas" data-translate="badges-btn">
+                                                </button>
+                                                <div class="offcanvas offcanvas-bottom bg-black bg-gradient h-50"
+                                                    tabindex="-1" id="badgesOffcanvas" aria-labelledby="badges-list">
+                                                    <div class="offcanvas-header py-1 shadow bg-primary bg-gradient">
+                                                        <h2 class="offcanvas-title mt-1 ms-5 text-lightest"
+                                                            id="badges-list">لیست
+                                                            نشان
+                                                            ها</h2>
+                                                        <button type="button"
+                                                            class="btn bi bi-x-square fs-2 text-lightest"
+                                                            data-bs-dismiss="offcanvas" aria-label="close">
+                                                        </button>
+                                                    </div>
+                                                    <div class="offcanvas-body pt-5">
+                                                        <div class="container-xl">
+                                                            <div
+                                                                class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4 g-5">
+                                                                <div class="col">
+                                                                    <div class="card border border-success h-100 rounded p-2 pe-none bg-success"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-success-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ فروشنده ماهر
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/10/18</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-success p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-shop-window fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-success text-black dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        شما با 23% فروش ماهانه بیشتر
+                                                                                        توانستید این جایگاه را کسب
+                                                                                        کنید.</mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-primary h-100 rounded p-2 pe-none bg-primary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-primary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-lightest">
+                                                                                ✔ برترین محتوا
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-lightest dana-semibold">1403/10/08</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-primary p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-video-camera-alt fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-primary dana-regular rounded p-1 fs-6 h-100">
+                                                                                        تبریک.
+                                                                                        شما با تولید 3 مارکت ویدیو
+                                                                                        برتر
+                                                                                        به
+                                                                                        این نشان دست یافته اید.
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-secondary h-100 rounded p-2 pe-none bg-secondary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-secondary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-white">
+                                                                                ✔ همیشه فعال!
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-white dana-semibold">1403/09/12</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-secondary p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-person-badge fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-secondary text-black dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        به مدت یک ماه فعالیت منظم
+                                                                                        داشته
+                                                                                        اید.
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-info h-100 rounded p-2 pe-none bg-info"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-info-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ پاسخگویی سریع
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/09/01</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-info p-3 rounded">
+                                                                                    <i
+                                                                                        class="bx bx-phone-call fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-info text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        سرعت پاسخگویی شما به هر
+                                                                                        کاربر
+                                                                                        کمتر
+                                                                                        از یک ساعت بوده.👏 </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-warning h-100 rounded p-2 pe-none bg-warning"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-warning-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ سریعترین رشد درآمد
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/08/22</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-warning p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-money-coin-transfer fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-warning text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        فوق العادست. سریعترین رشد
+                                                                                        درآمد
+                                                                                        در مجموعه رو تو کسب کردی!!
+                                                                                        😃
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-dark h-100 rounded p-2 pe-none bg-dark"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-dark-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead text-white dana-medium">
+                                                                                ✔ مشتری مدار
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-white dana-semibold">1403/08/09</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-dark p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-person-check fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-dark dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        رضایت مشتریان از راهنمایی و
+                                                                                        خدمات شما نمره 8.5/10 گرفته!
+                                                                                        کارت درسته 👏
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-label-primary h-100 rounded p-2 pe-none bg-primary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-primary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-lightest">
+                                                                                ✔ فروشنده نمونه بخش موبایل
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-lightest dana-semibold">1403/07/19</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-primary p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-mobile-notch fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-primary dana-regular rounded p-1 fs-6 h-100">
+                                                                                        شما رکورد بیشترین ثبت فروش
+                                                                                        ماهانه در دسته بندی موبایل و
+                                                                                        اکسسوری را شکستید !!!
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-danger h-100 rounded p-2 pe-none bg-danger"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-danger-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ شروع کار
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/06/06</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-danger p-3 rounded">
+                                                                                    <i class="bi bi-pin-map fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-danger text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        🎉 شما پروفایل خود را تکمیل
+                                                                                        و
+                                                                                        کار خود را در بخش فروش آغاز
+                                                                                        کردید...
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-success h-100 rounded p-2 pe-none bg-success"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-success-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ فروشنده ماهر
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/10/18</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-success p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-shop-window fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-success text-black dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        شما با 23% فروش ماهانه بیشتر
+                                                                                        توانستید این جایگاه را کسب
+                                                                                        کنید.</mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-primary h-100 rounded p-2 pe-none bg-primary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-primary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-lightest">
+                                                                                ✔ برترین محتوا
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-lightest dana-semibold">1403/10/08</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-primary p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-video-camera-alt fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-primary dana-regular rounded p-1 fs-6 h-100">
+                                                                                        تبریک.
+                                                                                        شما با تولید 3 مارکت ویدیو
+                                                                                        برتر
+                                                                                        به
+                                                                                        این نشان دست یافته اید.
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-secondary h-100 rounded p-2 pe-none bg-secondary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-secondary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-white">
+                                                                                ✔ همیشه فعال!
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-white dana-semibold">1403/09/12</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-secondary p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-person-badge fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-secondary text-black dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        به مدت یک ماه فعالیت منظم
+                                                                                        داشته
+                                                                                        اید.
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-info h-100 rounded p-2 pe-none bg-info"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-info-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ پاسخگویی سریع
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/09/01</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-info p-3 rounded">
+                                                                                    <i
+                                                                                        class="bx bx-phone-call fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-info text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        سرعت پاسخگویی شما به هر
+                                                                                        کاربر
+                                                                                        کمتر
+                                                                                        از یک ساعت بوده.👏 </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-warning h-100 rounded p-2 pe-none bg-warning"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-warning-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ سریعترین رشد درآمد
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/08/22</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-warning p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-money-coin-transfer fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-warning text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        فوق العادست. سریعترین رشد
+                                                                                        درآمد
+                                                                                        در مجموعه رو تو کسب کردی!!
+                                                                                        😃
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-dark h-100 rounded p-2 pe-none bg-dark"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-dark-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead text-white dana-medium">
+                                                                                ✔ مشتری مدار
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-white dana-semibold">1403/08/09</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-dark p-3 rounded">
+                                                                                    <i
+                                                                                        class="bi bi-person-check fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-dark dana-regular rounded p-1 fs-6 h-100">تبریک.
+                                                                                        رضایت مشتریان از راهنمایی و
+                                                                                        خدمات شما نمره 8.5/10 گرفته!
+                                                                                        کارت درسته 👏
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-label-primary h-100 rounded p-2 pe-none bg-primary"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-primary-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-lightest">
+                                                                                ✔ فروشنده نمونه بخش موبایل
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-lightest dana-semibold">1403/07/19</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-primary p-3 rounded">
+                                                                                    <i
+                                                                                        class="fi fi-rr-mobile-notch fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-primary dana-regular rounded p-1 fs-6 h-100">
+                                                                                        شما رکورد بیشترین ثبت فروش
+                                                                                        ماهانه در دسته بندی موبایل و
+                                                                                        اکسسوری را شکستید !!!
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="card border border-danger h-100 rounded p-2 pe-none bg-danger"
+                                                                        style="--bs-box-shadow: 0 0.5rem 1rem rgba(var(--bs-danger-rgb), .5);
+                                                                            box-shadow: var(--bs-box-shadow) !important;">
+                                                                        <div
+                                                                            class="card-header p-1 pb-0 d-flex justify-content-between">
+                                                                            <h5
+                                                                                class="card-title lead dana-medium text-black">
+                                                                                ✔ شروع کار
+                                                                            </h5>
+                                                                            <small
+                                                                                class="text-black dana-semibold">1403/06/06</small>
+                                                                        </div>
+                                                                        <div class="card-body p-1 pt-0">
+                                                                            <div
+                                                                                class="d-flex align-items-center h-100">
+                                                                                <span
+                                                                                    class="badge bg-label-danger p-3 rounded">
+                                                                                    <i class="bi bi-pin-map fs-1"></i>
+                                                                                </span>
+                                                                                <div class="ms-3 h-100">
+                                                                                    <mark
+                                                                                        class="card-text d-block bg-label-danger text-black dana-regular rounded p-1 fs-6 h-100">
+                                                                                        🎉 شما پروفایل خود را تکمیل
+                                                                                        و
+                                                                                        کار خود را در بخش فروش آغاز
+                                                                                        کردید...
+                                                                                    </mark>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 text-center text-sm-left">
+                                            <div class="card-body pb-0 px-1">
+                                                <img src="../assets/img/illustrations/man-with-laptop-light.png"
+                                                    alt="عکس تبریک" height="140px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 order-1 order-sm-2 order-md-1 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img src="../assets/img/icons/unicons/wallet-info.png"
+                                                    alt="chart-success" class="rounded">
+                                            </div>
+                                            <div class="dropend">
+                                                <button type="button" class="btn p-0" id="cardOpt1"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                    <a href="javascript:void(0);" class="dropdown-item">جزئیات</a>
+                                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#card-delete">
+                                                        حذف کارت
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm-center text-md-start text-xxl-center pe-none">
+                                            <span class="fw-semibold mb-1 md-auto">
+                                                فروش
+                                            </span>
+                                            <span class="text-muted ms-1">(ريال)</span>
+                                            <h3
+                                                class="card-title my-2 text-nowrap fs-4 dana-medium text-center text-lg-start text-xxl-center text-center text-lg-start text-xxl-center">
+                                                5,724,115,000</h3>
+                                        </div>
+                                        <mark
+                                            class="d-block text-success rounded-pill text-center bg-primary dana-bold fs-5 pe-none">
+                                            <i class="bx bx-up-arrow-circle"></i>
+                                            <bdo dir="ltr" class="horizon-rounded">
+                                                +23.5%
+                                            </bdo>
+                                        </mark>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 order-1 order-sm-2 order-md-1 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body d-flex flex-column justify-content-between">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img src="../assets/img/icons/unicons/chart-success.png"
+                                                    alt="chart-success" class="rounded">
+                                            </div>
+                                            <div class="dropend">
+                                                <button type="button" class="btn p-0" id="cardOpt2"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="cardOpt2">
+                                                    <a href="javascript:void(0);" class="dropdown-item">جزئیات</a>
+                                                    <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#card-delete">
+                                                        حذف کارت
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-sm-center text-md-start text-xxl-center pe-none">
+                                            <span class="fw-semibold mb-1 md-auto">
+                                                سود
+                                            </span>
+                                            <span class="text-muted ms-1">(ريال)</span>
+                                            <h3
+                                                class="card-title my-2 text-nowrap fs-4 dana-medium text-center text-lg-start text-xxl-center text-center text-lg-start text-xxl-center">
+                                                3,245,750,000</h3>
+                                        </div>
+                                        <mark
+                                            class="d-block text-success rounded-pill text-center bg-primary dana-bold fs-5 pe-none">
+                                            <i class="bx bx-up-arrow-circle"></i>
+                                            <bdo dir="ltr" class="horizon-rounded">
+                                                +23.5%
+                                            </bdo>
+                                        </mark>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 order-3 mb-4">
+                                <div class="card">
+                                    <div class="row row-bordered g-0">
+                                        <div class="col-md-8">
+                                            <h5 class="card-header">درآمد نیم سال دوم در سه سال اخیر (میلیون تومان)
+                                            </h5>
+                                            <bdo dir="ltr">
+                                                <div id="totalRevenueChart"></div>
+                                            </bdo>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card-body">
+                                                <div class="text-center">
+                                                    <div class="col-4 col-md-auto mx-auto">
+                                                        <label for="YearSelect" class="form-label fs-6 text-muted">
+                                                            انتخاب سال مالی
+                                                        </label>
+                                                        <select name="YearSelection" id="YearSelect"
+                                                            class="form-select form-select-sm mb-3 text-center horizon-rounded"
+                                                            aria-label="انتخاب سال مالی">
+                                                            <option value="1" selected>2024</option>
+                                                            <option value="2">2023</option>
+                                                            <option value="3">2022</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div id="growthChart"></div>
+                                                <div class="text-center text-muted mb-3 mt-3">
+                                                    <mark id="MonthlyGrowth"
+                                                        class="horizon-rounded bg-danger rounded-pill"
+                                                        dir="ltr">-59%</mark>
+                                                    تغییر درآمد نسبت به ماه گذشته
+                                                </div>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-between px-4 px-lg-2 px-xxl-4 gap-3 gap-lg-1">
+                                                    <div class="d-flex">
+                                                        <div class="me-2">
+                                                            <span class="badge bg-label-primary p-2">
+                                                                <i class="bx bx-dollar-circle text-primary"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <small class="horizon-rounded mb-1">2024</small>
+                                                            <h6 class="mb-0">174 م.ت</h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div class="me-2">
+                                                            <span class="badge bg-label-info p-2">
+                                                                <i class="bx bx-wallet-alt text-primary"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="d-flex flex-column">
+                                                            <small class="horizon-rounded mb-1">2023</small>
+                                                            <h6 class="mb-0">83 م.ت</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-3 order-2 order-lg-4 mb-4 mb-sm-0 mb-md-4">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-lg-12 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <div
+                                                    class="card-title d-flex align-items-start justify-content-between">
+                                                    <div class="avatar flex-shrink-0">
+                                                        <img src="../assets/img/icons/unicons/paypal.png"
+                                                            alt="chart-success" class="rounded">
+                                                    </div>
+                                                    <div class="dropend">
+                                                        <button type="button" class="btn p-0" id="cardOpt4"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="cardOpt4">
+                                                            <a href="javascript:void(0);"
+                                                                class="dropdown-item">جزئیات</a>
+                                                            <button type="button" class="dropdown-item"
+                                                                data-bs-toggle="modal" data-bs-target="#card-delete">
+                                                                حذف کارت
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-sm-center text-md-start text-xxl-center pe-none">
+                                                    <span class="fw-semibold mb-1 md-auto">
+                                                        پرداخت ها
+                                                    </span>
+                                                    <span class="text-muted ms-1">(ريال)</span>
+                                                    <h3
+                                                        class="card-title my-2 text-nowrap fs-4 dana-medium text-center text-lg-start text-xxl-center text-center text-lg-start text-xxl-center">
+                                                        37,690,000</h3>
+                                                </div>
+                                                <mark
+                                                    class="d-block text-danger rounded-pill text-center dana-bold fs-5 pe-none">
+                                                    <i class="bx bx-up-arrow-circle"></i>
+                                                    <bdo dir="ltr" class="horizon-rounded">
+                                                        +23.5%
+                                                    </bdo>
+                                                </mark>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-12 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body">
+                                                <div
+                                                    class="card-title d-flex align-items-start justify-content-between">
+                                                    <div class="avatar flex-shrink-0">
+                                                        <img src="../assets/img/icons/unicons/cc-primary.png"
+                                                            alt="chart-success" class="rounded">
+                                                    </div>
+                                                    <div class="dropend">
+                                                        <button type="button" class="btn p-0" id="cardOpt3"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="cardOpt3">
+                                                            <a href="javascript:void(0);"
+                                                                class="dropdown-item">جزئیات</a>
+                                                            <button type="button" class="dropdown-item"
+                                                                data-bs-toggle="modal" data-bs-target="#card-delete">
+                                                                حذف کارت
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-sm-center text-md-start text-xxl-center pe-none">
+                                                    <span class="fw-semibold mb-1 md-auto">
+                                                        تراکنش ها
+                                                    </span>
+                                                    <span class="text-muted ms-1">(ريال)</span>
+                                                    <h3
+                                                        class="card-title my-2 text-nowrap fs-4 dana-medium text-center text-lg-start text-xxl-center text-center text-lg-start text-xxl-center">
+                                                        387,550,000</h3>
+                                                </div>
+                                                <mark
+                                                    class="d-block text-success rounded-pill text-center bg-primary dana-bold fs-5 pe-none">
+                                                    <i class="bx bx-up-arrow-circle"></i>
+                                                    <bdo dir="ltr" class="horizon-rounded">
+                                                        +44.4%
+                                                    </bdo>
+                                                </mark>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- Order Statistics -->
+                            <div class="col-md-6 oreder-0 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-start justify-content-between pb-0">
+                                        <div class="card-title mb-0">
+                                            <h5 class="m-0 me-2">آمار سفارشات</h5>
+                                            <small class="text-muted">
+                                                <strong class="text-muted">
+                                                    572.4
+                                                </strong>
+                                                میلیون تومان فروش کلی
+                                            </small>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0" data-bs-toggle="dropdown"
+                                                id="OrederStatistics" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="OrderStatistics">
+                                                <a href="javascript:void(0);" class="dropdown-item">انتخاب همه</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">نوسازی</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">اشتراک گذاری</a>
+                                                <li class="dropdown-divider"></li>
+                                                <a href="javascript:void(0);"
+                                                    class="dropdown-item btn btn-outline-info">جزئیات</a>
+                                                <button type="button"
+                                                    class="dropdown-item btn btn-outline-warning position-relative"
+                                                    data-bs-toggle="tooltip"
+                                                    id="card-delete-btn"
+                                                    data-bs-title="این کارت از طریق تنظیمات قابل بازگردانی است"
+                                                    data-bs-placement="bottom">
+                                                    <a data-bs-toggle="modal" href="#card-delete"
+                                                        class="stretched-link link-warning" id="card-delete-link">
+                                                        حذف کارت
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body mt-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="d-flex flex-column align-items-center gap-1">
+                                                <h2 class="mb-2 horizon-rounded">108</h2>
+                                                <span>تعداد کل سفارشات</span>
+                                            </div>
+                                            <div id="orderStatisticsChart"></div>
+                                        </div>
+                                    </div>
+                                    <ul class="p-0 m-0">
+                                        <li class="d-flex mb-4 pb-1">
+                                            <div class="avatar flex-shrink-0 ms-3">
+                                                <span class="avatar-initial rounded bg-warning">
+                                                    <i class="bx bx-mobile-alt"></i>
+                                                </span>
+                                            </div>
+                                            <div
+                                                class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                <div class="ms-2">
+                                                    <h6 class="mb-0">الکترونیک</h6>
+                                                    <small class="text-muted">موبایل، ایرپاد و ساعت هوشمند</small>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <small class="fw-semibold dana-semibold me-3 text-nowrap">417.5
+                                                        م.ت</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex mb-4 pb-1">
+                                            <div class="avatar flex-shrink-0 ms-3">
+                                                <span class="avatar-initial rounded bg-gray">
+                                                    <i class="bx bx-home-smile"></i>
+                                                </span>
+                                            </div>
+                                            <div
+                                                class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                <div class="ms-2">
+                                                    <h6 class="mb-0">دیزاین داخلی</h6>
+                                                    <small class="text-muted">دکور، سرویس چوب و فرش</small>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <small class="fw-semibold dana-semibold me-3 text-nowrap">41.4
+                                                        م.ت</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex mb-4 pb-1">
+                                            <div class="avatar flex-shrink-0 ms-3">
+                                                <span class="avatar-initial rounded bg-info">
+                                                    <i class="bx bx-closet"></i>
+                                                </span>
+                                            </div>
+                                            <div
+                                                class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                <div class="ms-2">
+                                                    <h6 class="mb-0">مد و لباس</h6>
+                                                    <small class="text-muted">لباس و اکسسوری مردانه و زنانه</small>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <small class="fw-semibold dana-semibold me-3 text-nowrap">58.7
+                                                        م.ت</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="d-flex mb-4 pb-1">
+                                            <div class="avatar flex-shrink-0 ms-3">
+                                                <span class="avatar-initial rounded bg-success">
+                                                    <i class="bx bx-football"></i>
+                                                </span>
+                                            </div>
+                                            <div
+                                                class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                <div class="ms-2">
+                                                    <h6 class="mb-0">ورزشی</h6>
+                                                    <small class="text-muted">پوشاک و تجهیزات انواع فعالیت های
+                                                        ورزشی</small>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <small class="fw-semibold dana-semibold me-3 text-nowrap">57.8
+                                                        م.ت</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 order-2 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header three-charts">
+                                        <ul class="nav nav-pills gap-1 gap-md-2" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button type="button" class="nav-link active" role="tab"
+                                                    data-bs-toggle="tab" data-bs-target="#incomelinechart"
+                                                    aria-controls="incomelinechart" aria-selected="true">
+                                                    درآمد
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                                    data-bs-target="#expenseslinechart"
+                                                    aria-controls="expenseslinechart" aria-selected="false">
+                                                    هزینه ها
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                                    data-bs-target="#profitlinechart" aria-controls="profitlinechart"
+                                                    aria-selected="false">
+                                                    سود
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body px-0">
+                                        <div class="tab-content p-1">
+                                            <div class="tab-pane fade show active" id="incomelinechart" role="tabpanel">
+                                                <div class="d-flex p-3 mb-5 align-items-center">
+                                                    <div class="avatar flex-shrink-0 me-3">
+                                                        <img src="../assets/img/icons/unicons/wallet.png"
+                                                            alt="wallet">
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted d-block mb-1">کل موجودی</small>
+                                                        <div class="d-flex align-items-center">
+                                                            <h6 class="mb-0 me-1">5,724,115,000</h6>
+                                                            <small class="text-muted">ریال</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ms-3 ms-sm-5 d-flex">
+                                                        <i class="bx bx-up-arrow-circle text-success"></i>
+                                                        <div class="mx-1 dana-medium fs-5">85%</div>
+                                                    </div>
+                                                </div>
+                                                <div id="incomeChart"></div>
+                                            </div>
+                                            <div class="tab-pane fade" id="expenseslinechart" role="tabpanel">
+                                                <div class="d-flex p-3 mb-5 align-items-center">
+                                                    <div class="avatar flex-shrink-0 me-3">
+                                                        <img src="../assets/img/icons/unicons/paypal.png"
+                                                            alt="costs">
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted d-block mb-1">کل هزینه ها</small>
+                                                        <div class="d-flex align-items-center">
+                                                            <h6 class="mb-0 me-1">2,489,579,000</h6>
+                                                            <small class="text-muted">ریال</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ms-3 ms-sm-5 d-flex">
+                                                        <i class="bx bx-down-arrow-circle text-success"></i>
+                                                        <div class="mx-1 dana-medium fs-5">8%</div>
+                                                    </div>
+                                                </div>
+                                                <div id="Expenses-Chart"></div>
+                                            </div>
+                                            <div class="tab-pane fade" id="profitlinechart" role="tabpanel">
+                                                <div class="d-flex p-3 mb-5 align-items-center">
+                                                    <div class="avatar flex-shrink-0 me-3">
+                                                        <img src="../assets/img/icons/unicons/chart-success.png"
+                                                            alt="costs">
+                                                    </div>
+                                                    <div>
+                                                        <small class="text-muted d-block mb-1">کل سود</small>
+                                                        <div class="d-flex align-items-center">
+                                                            <h6 class="mb-0 me-1">3,245,750,000</h6>
+                                                            <small class="text-muted">ریال</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ms-3 ms-sm-5 d-flex">
+                                                        <i class="bx bx-up-arrow-circle text-success"></i>
+                                                        <div class="mx-1 dana-medium fs-5">77%</div>
+                                                    </div>
+                                                </div>
+                                                <div id="profileReportChart"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-1 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-start justify-content-between">
+                                        <h5 class="card-title m-0 ms-2">
+                                            تراکنش ها
+                                        </h5>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0" id="TransactionDropDown"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="TransactionDropDown">
+                                                <a href="javascript:void(0);" class="dropdown-item">هفته جاری</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">هفته گذشته</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">ماه گذشته</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">چهار هفته
+                                                    گذشته</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">سال گذشته</a>
+                                                <li class="dropdown-divider"></li>
+                                                <a href="javascript:void(0);"
+                                                    class="dropdown-item btn btn-outline-info">جزئیات</a>
+                                                <button type="button"
+                                                    class="dropdown-item btn btn-outline-warning position-relative"
+                                                    id="card-delete-btn"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-title="این کارت از طریق تنظیمات قابل بازگردانی است"
+                                                    data-bs-placement="bottom">
+                                                    <a data-bs-toggle="modal" href="#card-delete"
+                                                        class="stretched-link link-warning" id="card-delete-link">
+                                                        حذف کارت
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="p-0 m-0">
+                                            <li class="d-flex mb-4 pb-1">
+                                                <div class="avatar flex-shrink-0 me-3 mt-3">
+                                                    <mark class="bg-label-danger rounded p-2"><i
+                                                            class="bx bx-wallet-alt fs-4"></i></mark>
+                                                </div>
+                                                <div
+                                                    class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                    <div class="me-2">
+                                                        <small class="text-muted d-block mb-1">حساب تنخواه</small>
+                                                        <h6 class="mb-0">واریز وجه</h6>
+                                                    </div>
+                                                    <div class="user-progress d-flex align-items-center gap-1">
+                                                        <h6 class="mb-0">595,000</h6>
+                                                        <span class="text-muted">تومان</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex mb-4 pb-1">
+                                                <div class="avatar flex-shrink-0 me-3 mt-3">
+                                                    <mark class="bg-label-success rounded p-2"><i
+                                                            class="bx bx-wallet fs-4"></i></mark>
+                                                </div>
+                                                <div
+                                                    class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                    <div class="me-2">
+                                                        <small class="text-muted d-block mb-1">حساب شخصی</small>
+                                                        <h6 class="mb-0">واریز وجه</h6>
+                                                    </div>
+                                                    <div class="user-progress d-flex align-items-center gap-1">
+                                                        <h6 class="mb-0">257,000</h6>
+                                                        <span class="text-muted">تومان</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex mb-4 pb-1">
+                                                <div class="avatar flex-shrink-0 me-3 mt-3">
+                                                    <mark class="bg-label-primary rounded p-2"><i
+                                                            class="bx bx-pie-chart fs-4"></i></mark>
+                                                </div>
+                                                <div
+                                                    class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                    <div class="me-2">
+                                                        <small class="text-muted d-block mb-1">حساب شرکت</small>
+                                                        <h6 class="mb-0">برداشت سود</h6>
+                                                    </div>
+                                                    <div class="user-progress d-flex align-items-center gap-1">
+                                                        <h6 class="mb-0">7,795,000</h6>
+                                                        <span class="text-muted">تومان</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex mb-4 pb-1">
+                                                <div class="avatar flex-shrink-0 me-3 mt-3">
+                                                    <mark class="bg-label-info rounded p-2"><i
+                                                            class="fi fi-rr-dashboard fs-4 align-text-top"></i></mark>
+                                                </div>
+                                                <div
+                                                    class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                    <div class="me-2">
+                                                        <small class="text-muted d-block mb-1">حساب شرکت</small>
+                                                        <h6 class="mb-0">واریز وجه (هزینه تبلیغات شرکت X)</h6>
+                                                    </div>
+                                                    <div class="user-progress d-flex align-items-center gap-1">
+                                                        <h6 class="mb-0">64,277,000</h6>
+                                                        <span class="text-muted">تومان</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="d-flex mb-4 pb-1">
+                                                <div class="avatar flex-shrink-0 me-3 mt-3">
+                                                    <mark class="bg-label-warning rounded p-2"><i
+                                                            class="bx bx-wallet-alt fs-4"></i></mark>
+                                                </div>
+                                                <div
+                                                    class="d-flex w-100 flex-nowrap align-items-center justify-content-between gap-2">
+                                                    <div class="me-2">
+                                                        <small class="text-muted d-block mb-1">حساب تنخواه</small>
+                                                        <h6 class="mb-0">واریز وجه (ناهار کارکنان)</h6>
+                                                    </div>
+                                                    <div class="user-progress d-flex align-items-center gap-1">
+                                                        <h6 class="mb-0">1,227,000</h6>
+                                                        <span class="text-muted">تومان</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header d-flex align-items-start justify-content-between">
+                                        <h2 class="fs-5 dana-medium">پرفروش ترین محصولات سایت</h2>
+                                        <mark class="text-white rounded-pill bg-primary px-2 py-1 pe-none"
+                                            style="font-size: .75rem;">از تمام دسته بندی
+                                            ها
+                                        </mark>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Slider main container -->
+                                        <div class="swiper mySwiper" dir="auto">
+                                            <!-- Additional required wrapper -->
+                                            <div class="swiper-wrapper">
+                                                <!-- Slides -->
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-5fa2852920cce.jpeg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            مودم روتر تی پی لینک دو آنتن ADSL2 Plus بی
+                                                                            سیم
+                                                                            مدل W8961N
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price">1,050,000</div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>%10</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            950,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-60ec31ef60f87.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                            <li style="background-color: #AB1C51;"></li>
+                                                                            <li style="background-color: #000;"></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            دسته بازی dual sense سونی پلی استیشن 5 مدل
+                                                                            Cosmic Red
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            3,950,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-60ec2f89b651d.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                            <li style="background-color: #AB1C51;"></li>
+                                                                            <li style="background-color: #000;"></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            دسته بازی dual sense سونی پلی استیشن 5 مدل
+                                                                            Midnight Black
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            4,050,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-634d1448bfdb7.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                            <li style="background-color: #000;"></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            ساعت هوشمند اپل سری 8 مدل Aluminum 41mm با
+                                                                            صفحه نمایش OLED
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            18,700,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/band-9.jpg" alt="Xiaomi Band 9"
+                                                                            class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                            <li style="background-color: #000;"></li>
+                                                                            <li style="background-color: #b3b3b3;"></li>
+                                                                            <li style="background-color: #4eaaff;"></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            مچ بند هوشمند شیائومی مدل Band 9 با صفحه
+                                                                            نمایش AMOLED
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price">
+                                                                            1,998,000
+                                                                        </div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>5%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            1,890,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Slides -->
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-5ff5ece9d93b8.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            شارژر دیواری اپل مدل 20 وات
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price">
+                                                                            590,000
+                                                                        </div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>%17</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            490,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-6187d6785488c.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            لپ تاپ 15.6 اینچی ایسوس مدل TUF Gaming F15
+                                                                            FX506LH-B
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            37,500,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-5f9944e1a566f.jpeg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                            <li style="background-color: #000;"></li>
+                                                                            <li style="background-color: #ff2600;"></li>
+                                                                            <li style="background-color: #0066ff;"></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            هارد اکسترنال ضد ضربه ای دیتا مدل HD710 Pro
+                                                                            با ظرفیت 1 ترابایت
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            2,950,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-6270372fe6cc0.jpg"
+                                                                            alt="مودم" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            هدفون بی سیم مدل ایرپاد پرو
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box no-discount d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price"></div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>0%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            1,200,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <div class="slider-item">
+                                                        <div class="card h-100 my-3">
+                                                            <div class="card-header">
+                                                                <a href="#">
+                                                                    <div
+                                                                        class="image-box d-flex align-items-center align-content-center justify-content-center">
+                                                                        <span></span>
+                                                                        <img src="../assets/image/media-6031f93e827dc.jpg"
+                                                                            alt="عطر و ادکلن" class="img-fluid">
+                                                                        <ul class="item-colors d-flex flex-wrap">
+                                                                        </ul>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="text-box d-flex flex-column">
+                                                                    <h3>
+                                                                        <a href="#">
+                                                                            تستر ادو پرفیوم زنانه ورساچه مدل Crystal
+                                                                            Noir حجم 90 میلی لیتر
+                                                                        </a>
+                                                                    </h3>
+                                                                    <div
+                                                                        class="discount-box d-flex justify-content-end align-items-center">
+                                                                        <div class="old-price">
+                                                                            1,700,000
+                                                                        </div>
+                                                                        <div class="discount-percentage d-flex">
+                                                                            <span>10%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="price-box d-flex justify-content-end align-items-center">
+                                                                        <div class="price">
+                                                                            1,350,000
+                                                                        </div>
+                                                                        <span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slider-next d-flex align-items-center justify-content-center">
+                                                <i class="bx bx-chevron-left"></i>
+                                            </div>
+                                            <div class="slider-prev d-flex align-items-center justify-content-center">
+                                                <i class="bx bx-chevron-right"></i>
+                                            </div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / Content -->
+                    <!-- Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div
+                            class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0" style="direction: ltr;">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with
+                                <br class="d-block d-sm-none">
+                                <i class="bi bi-heart text-primary"></i> by
+                                <a href="javascript:void(0);" target="_blank" class="footer-link fw-bolder">Hamed</a>
+                            </div>
+                            <div>
+                                <a href="javascript:void(0);" class="footer-link me-4" target="_blank">لایسنس</a>
+
+                                <a href="javascript:void(0);" target="_blank" class="footer-link me-4">اسناد</a>
+
+                                <a href="javascript:void(0);" target="_blank" class="footer-link me-4">پشتیبانی</a>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- / Footer -->
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- / Content Wrapper -->
+            </div>
+            <!-- / Layout Page -->
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- Exit-Account Modal -->
+    <div class="modal fade bg-label-gray" id="exit-account" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="exit-account-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header pt-3 pt-md-4">
+                    <h3 class="modal-title fs-5" id="exit-account-label">
+                        از خروج از حساب کاربری اطمینان دارید؟
+                    </h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="انصراف از خروج"></button>
+                </div>
+                <div class="modal-body pb-0 pb-sm-4">
+                    <button type="button" class="btn btn-secondary mb-3 mb-sm-0" data-bs-dismiss="modal">
+                        انصراف
+                    </button>
+                    <a href="auth-login-basic.html" class="btn btn-outline-danger dana-medium mb-3 mb-sm-0">خروج از
+                        حساب</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card-Delete Modal -->
+    <div id="card-delete-modal">
+        <div class="modal fade" id="card-delete" tabindex="-1" aria-labelledby="card-delete-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header pt-3">
+                        <h3 class="modal-title fs-5" id="card-delete-label">
+                            می خواهید این کارت را از داشبورد خود حذف کنید؟
+                        </h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="fs-6 dana-medium text-info">این کارت از بخش تنظیمات قابل بازگردانی است.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">انصراف</button>
+                        <button type="button" class="btn btn-outline-primary">حذف شود</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / Layout Wrapper -->
+    <!-- Core JS -->
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/dashboards-analytics.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="../assets/js/most-sales-swiper.js"></script>
+    <script>
+        const translations = {
+            en: null,
+            fa: null
+        };
+
+        const loadTranslation = (lang) => {
+            return fetch(`${lang}.json`)
+                .then(response => response.json())
+                .then(data => {
+                    translations[lang] = data;
+                    applyTranslation(lang);
+                });
+        };
+
+        const applyTranslation = (lang) => {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            const placeholders = document.querySelectorAll('[data-translate-placeholder]');
+            placeholders.forEach(el => {
+                const key = el.getAttribute('data-translate-placeholder');
+                if (translations[lang][key]) {
+                    el.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+        };
+
+        const updateLangAttributes = (lang) => {
+            if (lang === 'fa') {
+                document.documentElement.setAttribute('lang', 'fa');
+                document.documentElement.setAttribute('dir', 'rtl');
+                replaceCss('rtl');
+            } else {
+                document.documentElement.setAttribute('lang', 'en');
+                document.documentElement.setAttribute('dir', 'ltr');
+                replaceCss('ltr');
+            }
+            updateNavbarClass(lang);
+        };
+
+        const replaceCss = (direction) => {
+            const coreCss = document.querySelector('.template-customizer-core-css');
+            const themeCss = document.querySelector('.template-customizer-theme-css');
+            const demoCss = document.querySelector('link[href*="demo"]');
+
+            if (direction === 'rtl') {
+                coreCss.setAttribute('href', '../assets/vendor/css/core-rtl.css');
+                themeCss.setAttribute('href', '../assets/vendor/css/theme-default-rtl.css');
+                demoCss.setAttribute('href', '../assets/css/demo-rtl.css');
+            } else {
+                coreCss.setAttribute('href', '../assets/vendor/css/core.css');
+                themeCss.setAttribute('href', '../assets/vendor/css/theme-default.css');
+                demoCss.setAttribute('href', '../assets/css/demo.css');
+            }
+        };
+
+        const updateNavbarClass = (lang) => {
+            const navbar = document.querySelector('#navbar-collapse');
+            if (navbar) {
+                if (lang === 'fa') {
+                    navbar.classList.remove('navbar-nav-right');
+                    navbar.classList.add('navbar-nav-left');
+                } else {
+                    navbar.classList.remove('navbar-nav-left');
+                    navbar.classList.add('navbar-nav-right');
+                }
+            }
+        };
+
+        const setLanguage = (lang) => {
+            if (translations[lang]) {
+                applyTranslation(lang);
+            } else {
+                loadTranslation(lang);
+            }
+            updateLangAttributes(lang);
+            updateSelectedButton(lang);
+            localStorage.setItem('language', lang);
+        };
+
+        const updateSelectedButton = (lang) => {
+            document.getElementById('Fa-Btn').classList.remove('selected');
+            document.getElementById('En-Btn').classList.remove('selected');
+            if (lang === 'fa') {
+                document.getElementById('Fa-Btn').classList.add('selected');
+            } else {
+                document.getElementById('En-Btn').classList.add('selected');
+            }
+        };
+
+        document.getElementById('Fa-Btn').addEventListener('click', () => setLanguage('fa'));
+        document.getElementById('En-Btn').addEventListener('click', () => setLanguage('en'));
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('language') || 'fa';
+            setLanguage(savedLanguage);
+        });
+    </script>
+</body>
+
+</html>

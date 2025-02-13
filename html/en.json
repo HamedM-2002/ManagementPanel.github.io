@@ -1,0 +1,23 @@
+{
+    "uiConfigOffcanvasTitle": "UI Config Settings",
+    "app-theme": "App Theme",
+    "day-night-switch": "Night Mode",
+    "theme-color-selection": "Theme Color selection",
+    "lang-select": "Language",
+    "Persian-select": "Persian",
+    "badge-congrats-title": "Congratulations Mr Shayan Behmanesh. 🎉",
+    "badge-congrats-text": "you've got 23% more Successful Sales on this week Comparing to the last week. this Badge added to your Badges List",
+    "badges-btn": "Show Badges",
+    "welcome": "welcome to timcheh management page",
+    "login-title": "Please Enter Your Username or Email and your Password.",
+    "email-input-title": "Email or Username",
+    "email-placeholder": "Enter your Email or Password",
+    "password-input-title": "Password",
+    "forget-pass-link": "Forgot your Password?",
+    "remember-me-checkbox": "Remember me",
+    "login-btn": "Login",
+    "no-account": "didn't SignUp yet?",
+    "login-signup-link": "Create an Account",
+    "search": "Search...",
+    "account-name-input-label": "Name"
+}
