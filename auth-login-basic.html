@@ -4,7 +4,7 @@
   class="light-style customizer-hide"
   dir="rtl"
   data-theme="theme-default"
-  data-assets-path="../assets/"
+  data-assets-path="assets/"
   data-template="vertical-menu-template-free"
 >
   <head>
@@ -13,10 +13,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
+    
+    <title>Login</title>
 
-    <title>SignUp</title>
-
-    <meta name="description" content="SignUp" />
+    <meta name="description" content="Login" />
         <!-- theme toggling -->
         <script>
           // Apply the saved theme before the rest of the page loads
@@ -107,28 +107,27 @@
         });
       </script>
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/image/favicon-32x32.png" />
-    <link href="../assets/image/android-chrome-192x192.png" rel="apple-touch-icon">
+    <link rel="icon" type="image/x-icon" href="assets/image/favicon-32x32.png" />
+    <link href="assets/image/android-chrome-192x192.png" rel="apple-touch-icon">
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-
+    <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../assets/vendor/css/core-rtl.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/vendor/css/theme-default-rtl.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/css/demo-rtl.css" />
+    <link rel="stylesheet" href="assets/vendor/css/core-rtl.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="assets/vendor/css/theme-default-rtl.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="assets/css/demo-rtl.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <!-- Page CSS -->
     <!-- Page -->
-    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth-rtl.css" />
+    <link rel="stylesheet" href="assets/vendor/css/pages/page-auth-rtl.css" />
     <!-- Helpers -->
-    <script src="../assets/vendor/js/helpers.js"></script>
+    <script src="assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../assets/js/config.js"></script>
+    <script src="assets/js/config.js"></script>
   </head>
 
   <body data-theme="light">
@@ -137,45 +136,46 @@
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner">
-          <!-- Register Card -->
+          <!-- Register -->
           <div class="card">
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
                 <a href="index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="../assets/image/logo.svg" alt="Timcheh-Logo">
+                    <img src="assets/image/logo.svg" alt="Timcheh-Logo">
                   </span>
                 </a>
               </div>
               <!-- /Logo -->
-                <h4 class="mb-2"> 🚀 سفر شما از اینجا شروع میشه...</h4>
-                <p class="mb-4 text-muted dana-medium">فقط کافیه یک حساب کاربری بسازید</p>  
+                <h4 class="mb-3 text-center" data-translate="welcome"></h4>
+                <p class="mb-4 text-muted dana-medium" data-translate="login-title"></p>  
               <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 <div class="mb-3">
-                  <label for="username" class="form-label dana-medium">نام کاربری</label>
+                  <label for="email" class="form-label dana-medium" data-translate="email-input-title"></label>
                   <input
-                    type="text"
-                    style="direction: ltr;"
+                    type="email"
                     class="form-control horizon-rounded"
-                    id="username"
-                    name="username"
-                    placeholder="یک نام کاربری انتخاب کنید"
+                    id="email"
+                    name="email-username"
+                    placeholder=""
+                    data-translate-placeholder="email-placeholder"
                     autofocus
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label dana-medium">ایمیل</label>
-                  <input type="email" class="form-control horizon-rounded" id="email" name="email" placeholder="ایمیل خود را وارد کنید" />
-                </div>
                 <div class="mb-3 form-password-toggle">
-                  <label class="form-label dana-medium" for="password">رمز عبور</label>
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label dana-medium" for="password" data-translate="password-input-title"></label>
+                    <a href="auth-forgot-password-basic.html">
+                      <small class="dana-medium" data-translate="forget-pass-link"></small>
+                    </a>
+                  </div>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
                       style="direction: ltr;"
                       id="password"
-                      class="form-control"
+                      class="form-control horizon-rounded"
                       name="password"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
@@ -183,56 +183,130 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-
                 <div class="mb-3">
-                  <div class="form-check" style="direction: rtl;">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" role="button" />
-                    <label class="form-check-label" for="terms-conditions">
-                      من با
-                      <a href="sales.html">ضوابط و قوانین</a>
-                      موافقم
-                    </label>
+                  <div class="form-check position-relative" style="direction: rtl;">
+                    <label class="form-check-label stretched-link dana-regular" role="button" for="remember-me" data-translate="remember-me-checkbox"></label>
+                    <input class="form-check-input" type="checkbox" id="remember-me" />
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100 dana-medium" id="SignUpBtn">ثبت نام</button>
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100 dana-medium" type="submit" data-translate="login-btn"></button>
+                </div>
               </form>
-
-              <bdo dir="rtl">
                 <p class="text-center">
-                  <span>حساب کاربری دارید؟</span>
-                  <a href="auth-login-basic.html">
-                    <span>وارد شوید.</span>
+                  <span data-translate="no-account"></span>
+                  <a href="auth-register-basic.html">
+                    <span data-translate="login-signup-link"></span>
                   </a>
                 </p>
-              </bdo>
             </div>
           </div>
-          <!-- Register Card -->
+          <!-- /Register -->
         </div>
       </div>
     </div>
 
     <!-- / Content -->
 
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../assets/vendor/js/bootstrap.js"></script>
-    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="assets/vendor/libs/popper/popper.js"></script>
+    <script src="assets/vendor/js/bootstrap.js"></script>
+    <script src="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../assets/vendor/js/menu.js"></script>
+    <script src="assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
 
     <!-- Main JS -->
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
     <!-- Page JS -->
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+      const translations = {
+        en: null,
+        fa: null
+      };
+
+      const loadTranslation = (lang) => {
+        return fetch(`${lang}.json`)
+          .then(response => response.json())
+          .then(data => {
+            translations[lang] = data;
+            applyTranslation(lang);
+          });
+      };
+
+      const applyTranslation = (lang) => {
+        const elements = document.querySelectorAll('[data-translate]');
+        elements.forEach(el => {
+          const key = el.getAttribute('data-translate');
+          if (translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        const placeholders = document.querySelectorAll('[data-translate-placeholder]');
+        placeholders.forEach(el => {
+          const key = el.getAttribute('data-translate-placeholder');
+          if (translations[lang][key]) {
+            el.setAttribute('placeholder', translations[lang][key]);
+          }
+        });
+      };
+
+      const updateLangAttributes = (lang) => {
+        if (lang === 'fa') {
+          document.documentElement.setAttribute('lang', 'fa');
+          document.documentElement.setAttribute('dir', 'rtl');
+          replaceCss('rtl');
+        } else {
+          document.documentElement.setAttribute('lang', 'en');
+          document.documentElement.setAttribute('dir', 'ltr');
+          replaceCss('ltr');
+        }
+        updateNavbarClass(lang);
+      };
+
+      const replaceCss = (direction) => {
+        const coreCss = document.querySelector('.template-customizer-core-css');
+        const themeCss = document.querySelector('.template-customizer-theme-css');
+        const demoCss = document.querySelector('link[href*="demo"]');
+        const pageAuthCss = document.querySelector('link[href*="page-auth"]');
+
+        if (direction === 'rtl') {
+          coreCss.setAttribute('href', 'assets/vendor/css/core-rtl.css');
+          themeCss.setAttribute('href', 'assets/vendor/css/theme-default-rtl.css');
+          demoCss.setAttribute('href', 'assets/css/demo-rtl.css');
+          pageAuthCss.setAttribute('href', 'assets/vendor/css/pages/page-auth-rtl.css');
+        } else {
+          coreCss.setAttribute('href', 'assets/vendor/css/core.css');
+          themeCss.setAttribute('href', 'assets/vendor/css/theme-default.css');
+          demoCss.setAttribute('href', 'assets/css/demo.css');
+          pageAuthCss.setAttribute('href', 'assets/vendor/css/pages/page-auth.css');
+        }
+      };
+
+      const setLanguage = (lang) => {
+        if (translations[lang]) {
+          applyTranslation(lang);
+        } else {
+          loadTranslation(lang);
+        }
+        updateLangAttributes(lang);
+        updateSelectedButton(lang);
+        localStorage.setItem('language', lang);
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLanguage = localStorage.getItem('language') || 'fa';
+        setLanguage(savedLanguage);
+      });
+    </script>
   </body>
 </html>
